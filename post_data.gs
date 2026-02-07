@@ -88,13 +88,22 @@ function addRecord(json) {
 }
 
 /**
- * Debug helper: Test addRecord with sample data
+ * Debug helper: Test addRecord with sine/cosine based on current seconds
+ * - Run multiple times with short delays → see a 60-second cycle wave form gradually
  */
 function testAddRecord() {
+  const now = new Date();
+  const seconds = now.getSeconds();
+  
+  const phase = (seconds / 60) * 2 * Math.PI; // 60sec cycle
+  
+  const sinValue = Math.sin(phase);
+  const cosValue = Math.cos(phase);
+  
   const sampleJson = {
     "project_name": "PROJECT-XXX",
-    "headers": ["temp", "humidity", "co2"],
-    "datas": [23.5, 58.2, 845],
+    "headers": ["sin", "cos"],
+    "datas": [sinValue, cosValue],
     "max_count": 1440
   };
 
